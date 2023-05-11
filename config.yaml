@@ -32,7 +32,7 @@ plugins:
     args:
       concurrent: 2
       upstreams:
-        - addr: tcp://192.168.20.5
+        - addr: tcp://192.168.20.5:1053
 
   # 自定义hosts
   - tag: hosts

@@ -1,0 +1,10 @@
+[
+    {
+        "name": "mosdns",
+        "script": "bash",
+        "args": [
+            "-c", "/root/se/mosdns/mosdns start -c /etc/mosdns/config.yaml -d /etc/mosdns"
+        ],
+        "cwd": "/etc/mosdns"
+    }
+]

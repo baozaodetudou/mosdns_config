@@ -40,7 +40,7 @@ plugins:
     type: hosts
     args:
       files:
-        - "/etc/hosts"
+        - "/root/se/mosdns/mosdns_config"
 
   # china ip和自己的vps ip
   - tag: local_ip

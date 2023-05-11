@@ -32,8 +32,7 @@ plugins:
     args:
       concurrent: 2
       upstreams:
-        - addr: tcp://8.8.8.8
-        - addr: tcp://1.1.1.1
+        - addr: tcp://192.168.20.5
 
   # 自定义hosts
   - tag: hosts

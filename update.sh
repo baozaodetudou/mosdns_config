@@ -20,9 +20,10 @@ fi
 pid=$(pm2 pid mosdns)
 if [[ $pid = "" || $pid = "0" ]]; then
     echo "mosdns start waiting"
-    pm2 start $C_PATH/pmm2.json
+    pm2 start $C_PATH/pm2.json
 else
     echo "mosdns restart"
-    pm2 restart mosdns
+    pm2 del mosdns
+    pm2 start $C_PATH/pm2.json
 fi
 

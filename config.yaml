@@ -1,136 +1,122 @@
 log:
   level: info
+  file: "mosdns.log"
+
+data_providers:
+  - tag: geosite
+    file: ./geosite.dat
+    auto_reload: true
+  - tag: geoip
+    file: ./geoip.dat
+    auto_reload: true
 
 plugins:
   # 缓存
   - tag: cache
     type: cache
     args:
-      size: 10240
-      lazy_cache_ttl: 86400
+      size: 5120
 
-  # 重定向域名
-  - tag: redirect
-    type: redirect
-    args:
-      rules:
-        - www.cnbeta.com www.cnbeta.com.cdn.cloudflare.net
-
-  # 转发至国内DNS，并发查询
+  # 转发至本地服务器的插件
   - tag: forward_local
-    type: forward
+    type: fast_forward
     args:
-      concurrent: 3
-      upstreams:
-        - addr: udp://61.139.2.69
-        - addr: udp://119.29.29.29
-        - addr: udp://223.5.5.5
+      upstream:
+        - addr: '202.106.196.115'
+        - addr: '202.106.46.151'
+        - addr: 'https://223.5.5.5/dns-query'
+          trusted: true
+          dial_addr: '223.5.5.5:443'
 
-  # 转发至国外DNS，并发查询
+  # 转发至远程服务器的插件
   - tag: forward_remote
-    type: forward
+    type: fast_forward
     args:
-      concurrent: 2
-      upstreams:
-        - addr: udp://192.168.20.5:1053
+      upstream:
+        - addr: '198.18.0.1'
 
-  # 自定义hosts
-  - tag: hosts
-    type: hosts
+  # 匹配本地域名的插件
+  - tag: query_is_local_domain
+    type: query_matcher
     args:
-      files:
-        - "/etc/mosdns/hosts"
+      domain:
+        - 'provider:geosite:cn'
 
-  # china ip和自己的vps ip
-  - tag: local_ip
-    type: ip_set
+  # 匹配非本地域名的插件
+  - tag: query_is_non_local_domain
+    type: query_matcher
     args:
-      files:
-        - /etc/mosdns/china_ip_list.txt
-        - /etc/mosdns/myip.txt
+      domain:
+        - 'provider:geosite:geolocation-!cn'
 
-  # fallback的primary服务器,返回非国内ip则drop_resp
-  - tag: local_sequence
-    type: sequence
+  # 匹配广告域名的插件
+  - tag: query_is_ad_domain
+    type: query_matcher
     args:
-      - exec: $forward_local
-      - matches: "!resp_ip $local_ip"
-        exec: accept
-      - exec: drop_resp
+      domain:
+        - 'provider:geosite:category-ads-all'
 
-  # fallback的secondary服务器,返回非国内ip则添加至ipset,返回国内ip只接受不会添加ipset
-  - tag: remote_sequence
-    type: sequence
+  # 匹配本地 IP 的插件
+  - tag: response_has_local_ip
+    type: response_matcher
     args:
-      - exec: $forward_remote
-      - matches: "!resp_ip $local_ip"
-        exec: ipset gfwlist,inet,24
-      - exec: accept
+      ip:
+        - 'provider:geoip:cn'
 
-  # fallback sequence
-  - tag: fallback
-    type: fallback
-    args:
-      primary: local_sequence
-      secondary: remote_sequence
-      threshold: 500
-      always_standby: true
-
-  # gfwlist解析出的ip添加至ipset，添加前先判断是否为国内ip或内网ip
-  - tag: gfw-list
-    type: sequence
-    args:
-      - exec: ttl 300-3600
-      - matches: "!resp_ip $local_ip"
-        exec: ipset gfwlist,inet,24
-      - exec: accept
-
-  # 主运行序列
+  # 主要的运行逻辑插件
+  # sequence 插件中调用的插件 tag 必须在 sequence 前定义，
+  # 否则 sequence 找不到对应插件。
   - tag: main_sequence
     type: sequence
     args:
-      - exec: $hosts
-      - matches: has_resp
-        exec: accept
-      
-      - matches: qtype 65
-        exec: reject 3
+      exec:
+        # 缓存
+        - cache
 
-      - matches: qname &/etc/mosdns/reject-list.txt &/etc/mosdns/my-reject-list.txt
-        exec: reject
+        # 屏蔽广告域名
+        - if: query_is_ad_domain
+          exec:
+            - _new_nxdomain_response
+            - _return
 
-      - exec: prefer_ipv4
+        # 已知的本地域名用本地服务器解析
+        - if: query_is_local_domain
+          exec:
+            - forward_local
+            - _return
 
-      - exec: $redirect
+        # 已知的非本地域名用远程服务器解析
+        - if: query_is_non_local_domain
+          exec:
+            - forward_remote
+            - _return
 
-      # 动态域名跳过缓存
-      - matches: "!qname 00006801.com"
-        exec: $cache
-      - matches: has_resp
-        exec: accept
+          # 剩下的未知域名用 IP 分流。
+          # 这里借助了 `fallback` 工作机制。分流原理请参考 `fallback`
+          # 的工作流程。
+          # primary 从本地服务器获取应答，丢弃非本地 IP 的结果。
+        - primary:
+            - forward_local
+            - if: "(! response_has_local_ip) && [_response_valid_answer]"
+            # - if: "[_response_valid_answer]"
+              exec:
+                - _drop_response
+          # secondary 从远程服务器获取应答。
+          secondary:
+            - forward_remote
+          # 这里建议设置成 local 服务器正常延时的 2~5 倍。
+          # 这个延时保证了 local 延时偶尔变高时，其结果不会被 remote 抢答。
+          # 如果 local 超过这个延时还没响应，可以假设 local 出现了问题。
+          # 这时用就采用 remote 的应答。单位: 毫秒。
+          fast_fallback: 200
 
-      - matches: qname &/etc/mosdns/direct-list.txt
-        exec: $forward_local
-      - matches: has_resp
-        exec: accept
-
-      - matches: qname &/etc/mosdns/proxy-list.txt
-        exec: $forward_remote
-      - matches: has_resp
-        exec: goto gfw-list
-
-      - exec: $fallback
-
-
-  # 启动监听服务
-  - tag: udp_server
-    type: udp_server
-    args:
-      entry: main_sequence
-      listen: :53
-
-  - tag: tcp_server
-    type: tcp_server
-    args:
-      entry: main_sequence
-      listen: :53
+servers:
+  - exec: main_sequence
+    listeners:
+      - protocol: udp
+        addr: 0.0.0.0:53
+      - protocol: tcp
+        addr: 0.0.0.0:53
+# API 入口设置
+api:
+  http: "0.0.0.0:8080"

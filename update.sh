@@ -3,11 +3,11 @@
 set -e
 M_PATH=/root/se/mosdns
 C_PATH=/etc/mosdns
-VER=$(curl --silent -qI https://github.com/IrineSistiana/mosdns/releases/latest | awk -F '/' '/^location/ {print  substr($NF, 1, length($NF)-1)}')
+#VER=$(curl --silent -qI https://github.com/IrineSistiana/mosdns/releases/latest | awk -F '/' '/^location/ {print  substr($NF, 1, length($NF)-1)}')
 
 if [ -d $M_PATH ]; then
     cd $M_PATH
-    wget https://github.com/IrineSistiana/mosdns/releases/download/$VER/mosdns-linux-amd64.zip
+    wget https://github.com/IrineSistiana/mosdns/releases/download/v4.5.3/mosdns-linux-amd64.zip
     unzip -o mosdns-linux-amd64.zip
     rm mosdns-linux-amd64.zip
 fi

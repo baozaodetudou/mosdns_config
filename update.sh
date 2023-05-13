@@ -23,6 +23,7 @@ if [[ $pid = "" || $pid = "0" ]]; then
     pm2 start $C_PATH/pmm2.json
 else
     echo "mosdns restart"
-    pm2 restart mosdns
+    pm2 del mosdns
+    pm2 start $C_PATH/pmm2.json
 fi
 

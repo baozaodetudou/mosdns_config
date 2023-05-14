@@ -56,6 +56,13 @@ plugins:
       domain:
         - 'provider:geosite:category-ads-all'
 
+#  # 匹配ddns的插件
+#  - tag: query_is_ddns
+#    type: query_matcher
+#    args:
+#      domain:
+#        - "doumao.fun"
+
   # 匹配本地 IP 的插件
   - tag: response_has_local_ip
     type: response_matcher
@@ -90,6 +97,12 @@ plugins:
           exec:
             - forward_remote
             - _return
+
+#        # ddns域名用本地服务器解析
+#        - if: query_is_ddns
+#          exec:
+#            - forward_local
+#            - _return
 
           # 剩下的未知域名用 IP 分流。
           # 这里借助了 `fallback` 工作机制。分流原理请参考 `fallback`

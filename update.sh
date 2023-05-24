@@ -10,6 +10,11 @@ if [ -d $M_PATH ]; then
     wget https://github.com/IrineSistiana/mosdns/releases/download/v4.5.3/mosdns-linux-amd64.zip
     unzip -o mosdns-linux-amd64.zip
     rm mosdns-linux-amd64.zip
+    wget https://mirror.apad.pro/dns/easymosdns.tar.gz
+    tar xzf easymosdns.tar.gz
+    mv ./mosdns ./mosdns.old
+    mv ./easymosdns ./mosdns
+    chmod +x ./mosdns
 fi
 
 if [ -d $C_PATH ]; then

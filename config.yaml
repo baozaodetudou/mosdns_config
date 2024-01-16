@@ -35,10 +35,10 @@ plugins:
       concurrent: 2
       upstreams: 
         - addr: "https://8.8.4.4/dns-query"
-          socks5: "192.168.20.6"
+          socks5: "192.168.20.6:6153"
           idle_timeout: 86400
         - addr: "https://1.0.0.1/dns-query"
-          socks5: "192.168.20.6"
+          socks5: "192.168.20.6:6153"
           idle_timeout: 86400
 
   - tag: "local_forward"

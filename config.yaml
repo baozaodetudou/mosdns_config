@@ -9,12 +9,13 @@ plugins:
     args:
       files:
         - "./accelerated-domains.china.txt"
+        - "./myip.txt"
 
   - tag: "direct_ip"
     type: ip_set
     args:
       files:
-        - "./CN-ip-cidr.txt"
+        - "./cn-ip.txt"
 
   - tag: "hosts"
     type: hosts

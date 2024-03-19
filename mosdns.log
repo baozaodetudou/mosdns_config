@@ -1,0 +1,111 @@
+2024-03-18T12:51:19.514Z	WARN	forward_local	upstream error	{"uqid": 38811, "qname": "collectd.org.", "qclass": 1, "qtype": 255, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T12:51:32.643Z	WARN	fallback	primary error	{"query": {"uqid": 38965, "client": "::ffff:10.10.10.1", "qname": "collectd.org.", "qtype": 255, "qclass": 1, "elapsed": "5.0008676s"}, "error": "context deadline exceeded"}
+2024-03-18T12:51:32.645Z	WARN	forward_local	upstream error	{"uqid": 38965, "qname": "collectd.org.", "qclass": 1, "qtype": 255, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T12:51:32.645Z	WARN	forward_local	upstream error	{"uqid": 38965, "qname": "collectd.org.", "qclass": 1, "qtype": 255, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T12:51:37.655Z	WARN	forward_local	upstream error	{"uqid": 39012, "qname": "collectd.org.", "qclass": 1, "qtype": 255, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T12:54:24.065Z	WARN	forward_local	upstream error	{"uqid": 40092, "qname": "t.audiences.me.", "qclass": 1, "qtype": 1, "upstream": "udp://223.5.5.5", "error": "context deadline exceeded"}
+2024-03-18T13:00:02.275Z	WARN	forward_local	upstream error	{"uqid": 43204, "qname": "t86bes5uehdtmhrrlon5eduogafaqsns7k95o0venoidcrov29avurgn.tt.x.bsgslb.cn.", "qclass": 1, "qtype": 1, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:00:11.151Z	WARN	signal received	{"signal": "terminated"}
+2024-03-18T13:00:11.151Z	INFO	starting shutdown sequences
+2024-03-18T13:00:11.152Z	INFO	closing plugin	{"tag": "forward_remote"}
+2024-03-18T13:00:11.154Z	INFO	closing plugin	{"tag": "tcp_server"}
+2024-03-18T13:00:11.155Z	INFO	closing plugin	{"tag": "main_sequence"}
+2024-03-18T13:00:11.155Z	INFO	closing plugin	{"tag": "cache"}
+2024-03-18T13:00:11.155Z	INFO	closing plugin	{"tag": "forward_local"}
+2024-03-18T13:00:11.156Z	INFO	closing plugin	{"tag": "local_sequence"}
+2024-03-18T13:00:11.156Z	INFO	closing plugin	{"tag": "remote_sequence"}
+2024-03-18T13:00:11.156Z	INFO	closing plugin	{"tag": "gfw-list"}
+2024-03-18T13:00:11.156Z	INFO	closing plugin	{"tag": "udp_server"}
+2024-03-18T13:00:11.156Z	WARN	udp_server	read err	{"error": "read udp [::]:53: use of closed network connection"}
+2024-03-18T13:00:11.157Z	INFO	all plugins were closed
+2024-03-18T13:00:12.886Z	INFO	loading plugin	{"tag": "cache", "type": "cache"}
+2024-03-18T13:00:12.886Z	INFO	starting api http server	{"addr": "0.0.0.0:8080"}
+2024-03-18T13:00:12.886Z	INFO	starting shutdown sequences
+2024-03-18T13:00:12.886Z	INFO	closing plugin	{"tag": "cache"}
+2024-03-18T13:00:12.886Z	INFO	all plugins were closed
+2024-03-18T13:00:24.957Z	INFO	loading plugin	{"tag": "cache", "type": "cache"}
+2024-03-18T13:00:24.957Z	INFO	starting api http server	{"addr": "0.0.0.0:8080"}
+2024-03-18T13:00:24.958Z	INFO	starting shutdown sequences
+2024-03-18T13:00:24.958Z	INFO	closing plugin	{"tag": "cache"}
+2024-03-18T13:00:24.958Z	INFO	all plugins were closed
+2024-03-18T13:02:31.948Z	INFO	loading plugin	{"tag": "cache", "type": "cache"}
+2024-03-18T13:02:31.949Z	INFO	starting api http server	{"addr": "0.0.0.0:8080"}
+2024-03-18T13:02:31.949Z	INFO	loading plugin	{"tag": "redirect", "type": "redirect"}
+2024-03-18T13:02:31.949Z	INFO	redirect	redirect rules loaded	{"length": 1}
+2024-03-18T13:02:31.949Z	INFO	loading plugin	{"tag": "forward_local", "type": "forward"}
+2024-03-18T13:02:31.950Z	INFO	loading plugin	{"tag": "forward_remote", "type": "forward"}
+2024-03-18T13:02:31.950Z	INFO	loading plugin	{"tag": "hosts", "type": "hosts"}
+2024-03-18T13:02:31.950Z	INFO	loading plugin	{"tag": "local_ip", "type": "ip_set"}
+2024-03-18T13:02:31.969Z	INFO	loading plugin	{"tag": "local_sequence", "type": "sequence"}
+2024-03-18T13:02:31.969Z	INFO	loading plugin	{"tag": "remote_sequence", "type": "sequence"}
+2024-03-18T13:02:31.970Z	INFO	loading plugin	{"tag": "fallback", "type": "fallback"}
+2024-03-18T13:02:31.970Z	INFO	loading plugin	{"tag": "gfw-list", "type": "sequence"}
+2024-03-18T13:02:31.970Z	INFO	loading plugin	{"tag": "main_sequence", "type": "sequence"}
+2024-03-18T13:02:32.422Z	INFO	loading plugin	{"tag": "udp_server", "type": "udp_server"}
+2024-03-18T13:02:32.422Z	INFO	udp_server	udp server started	{"addr": "[::]:53"}
+2024-03-18T13:02:32.423Z	INFO	loading plugin	{"tag": "tcp_server", "type": "tcp_server"}
+2024-03-18T13:02:32.423Z	INFO	tcp_server	tcp server started	{"addr": "[::]:53", "tls": false}
+2024-03-18T13:02:32.423Z	INFO	all plugins are loaded
+2024-03-18T13:03:45.938Z	WARN	forward_local	upstream error	{"uqid": 414, "qname": "safebrowsing.urlsec.qq.com.", "qclass": 1, "qtype": 28, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:04:57.775Z	WARN	forward_local	upstream error	{"uqid": 887, "qname": "flexible.coolccloud.com.", "qclass": 1, "qtype": 28, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:04:57.773Z	WARN	forward_local	upstream error	{"uqid": 888, "qname": "udpdispatch1379413237.talkline.cn.", "qclass": 1, "qtype": 1, "upstream": "udp://223.5.5.5", "error": "context deadline exceeded"}
+2024-03-18T13:05:44.747Z	WARN	main_sequence.r5	reference query routine err	{"query": {"uqid": 1522, "client": "::ffff:10.10.10.1", "qname": "liveupoc.tcdn.qq.com.", "qtype": 1, "qclass": 1, "elapsed": "5.000588s"}, "error": "context deadline exceeded"}
+2024-03-18T13:05:44.747Z	WARN	forward_local	upstream error	{"uqid": 1522, "qname": "liveupoc.tcdn.qq.com.", "qclass": 1, "qtype": 1, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:05:44.747Z	WARN	forward_local	upstream error	{"uqid": 1522, "qname": "liveupoc.tcdn.qq.com.", "qclass": 1, "qtype": 1, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:05:46.529Z	WARN	forward_local	upstream error	{"uqid": 1611, "qname": "pull-flv-l6-encryption.douyincdn.com.", "qclass": 1, "qtype": 28, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:05:48.899Z	WARN	forward_local	upstream error	{"uqid": 1761, "qname": "pull-flv-hs-f5-enc.flive.douyincdn.com.", "qclass": 1, "qtype": 28, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:05:49.059Z	WARN	forward_local	upstream error	{"uqid": 1774, "qname": "pull-tsl-vr-l1.douyincdn.com.", "qclass": 1, "qtype": 28, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:05:50.172Z	WARN	forward_local	upstream error	{"uqid": 1842, "qname": "push-rtmp-l6-encryption.douyincdn.com.", "qclass": 1, "qtype": 28, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:07:28.184Z	WARN	forward_local	upstream error	{"uqid": 2640, "qname": "tmfmazu.m.qq.com.", "qclass": 1, "qtype": 1, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:07:28.187Z	WARN	forward_local	upstream error	{"uqid": 2646, "qname": "tmfmazu4.m.qq.com.", "qclass": 1, "qtype": 1, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:07:28.194Z	WARN	forward_local	upstream error	{"uqid": 2654, "qname": "tmfmazu.m.qq.com.", "qclass": 1, "qtype": 1, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:07:28.194Z	WARN	udp_server	entry err	{"query": {"uqid": 2654, "client": "::ffff:10.10.10.1", "qname": "tmfmazu.m.qq.com.", "qtype": 1, "qclass": 1, "elapsed": "5.00061764s"}, "error": "context deadline exceeded"}
+2024-03-18T13:08:42.569Z	WARN	forward_local	upstream error	{"uqid": 3111, "qname": "overseactrl.map.qq.com.", "qclass": 1, "qtype": 28, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:08:42.576Z	WARN	forward_local	upstream error	{"uqid": 3117, "qname": "sdkgw.map.qq.com.", "qclass": 1, "qtype": 28, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:10:42.344Z	WARN	forward_local	upstream error	{"uqid": 4237, "qname": "liveupoc.tcdn.qq.com.", "qclass": 1, "qtype": 28, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:11:24.122Z	WARN	forward_local	upstream error	{"uqid": 4890, "qname": "50.wxapp.tc.qq.com.", "qclass": 1, "qtype": 1, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:12:12.387Z	WARN	forward_local	upstream error	{"uqid": 5236, "qname": "ios.rqd.qq.com.", "qclass": 1, "qtype": 1, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:12:12.387Z	WARN	forward_local	upstream error	{"uqid": 5236, "qname": "ios.rqd.qq.com.", "qclass": 1, "qtype": 1, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:12:12.387Z	WARN	cache	failed to update lazy cache	{"query": {"uqid": 5236, "client": "::ffff:10.10.10.1", "qname": "ios.rqd.qq.com.", "qtype": 1, "qclass": 1, "elapsed": "5.00174004s"}, "error": "context deadline exceeded"}
+2024-03-18T13:13:24.178Z	WARN	forward_local	upstream error	{"uqid": 5754, "qname": "s1b.time.edu.cn.", "qclass": 1, "qtype": 1, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:13:24.178Z	WARN	udp_server	entry err	{"query": {"uqid": 5753, "client": "::ffff:10.10.10.1", "qname": "s1b.time.edu.cn.", "qtype": 1, "qclass": 1, "elapsed": "5.00170748s"}, "error": "context deadline exceeded"}
+2024-03-18T13:13:24.178Z	WARN	forward_local	upstream error	{"uqid": 5753, "qname": "s1b.time.edu.cn.", "qclass": 1, "qtype": 1, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:13:24.178Z	WARN	forward_local	upstream error	{"uqid": 5754, "qname": "s1b.time.edu.cn.", "qclass": 1, "qtype": 28, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:16:32.084Z	WARN	forward_remote	upstream error	{"uqid": 7700, "qname": "www.agsvpt.com.", "qclass": 1, "qtype": 1, "upstream": "tcp://8.8.8.8", "error": "EOF"}
+2024-03-18T13:17:37.209Z	WARN	forward_local	upstream error	{"uqid": 8140, "qname": "ios.rqd.qq.com.", "qclass": 1, "qtype": 1, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:17:37.211Z	WARN	forward_local	upstream error	{"uqid": 8142, "qname": "tmfmazu4.m.qq.com.", "qclass": 1, "qtype": 1, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:21:47.221Z	WARN	forward_remote	upstream error	{"uqid": 10467, "qname": "icyleaf.com.", "qclass": 1, "qtype": 1, "upstream": "tcp://1.1.1.1", "error": "context deadline exceeded"}
+2024-03-18T13:22:56.080Z	WARN	forward_local	upstream error	{"uqid": 11035, "qname": "tmfmazu4.m.qq.com.", "qclass": 1, "qtype": 1, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:23:02.197Z	WARN	forward_local	upstream error	{"uqid": 11076, "qname": "s1b.time.edu.cn.", "qclass": 1, "qtype": 28, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:24:24.072Z	WARN	forward_local	upstream error	{"uqid": 11645, "qname": "map.qq.com.", "qclass": 1, "qtype": 1, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:24:24.369Z	WARN	main_sequence.r5	reference query routine err	{"query": {"uqid": 11678, "client": "::ffff:10.10.10.1", "qname": "mapapi.qq.com.", "qtype": 1, "qclass": 1, "elapsed": "5.0005758s"}, "error": "context deadline exceeded"}
+2024-03-18T13:24:24.369Z	WARN	forward_local	upstream error	{"uqid": 11678, "qname": "mapapi.qq.com.", "qclass": 1, "qtype": 1, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:24:24.369Z	WARN	forward_local	upstream error	{"uqid": 11678, "qname": "mapapi.qq.com.", "qclass": 1, "qtype": 28, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:24:24.369Z	WARN	forward_local	upstream error	{"uqid": 11678, "qname": "mapapi.qq.com.", "qclass": 1, "qtype": 1, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:24:25.325Z	WARN	forward_local	upstream error	{"uqid": 11688, "qname": "epj-images.oss-cn-shanghai.aliyuncs.com.", "qclass": 1, "qtype": 1, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:24:25.325Z	WARN	forward_local	upstream error	{"uqid": 11687, "qname": "epj-images.oss-cn-shanghai.aliyuncs.com.", "qclass": 1, "qtype": 28, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:28:12.137Z	WARN	forward_local	upstream error	{"uqid": 13868, "qname": "tmfmazu.m.qq.com.", "qclass": 1, "qtype": 1, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:28:12.598Z	WARN	forward_local	upstream error	{"uqid": 13890, "qname": "webcdn.m.qq.com.", "qclass": 1, "qtype": 1, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:32:33.676Z	WARN	forward_local	upstream error	{"uqid": 16277, "qname": "msfwifiv6.3g.qq.com.", "qclass": 1, "qtype": 28, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:39:39.059Z	WARN	forward_remote	upstream error	{"uqid": 19954, "qname": "get_pt_helper_license.guyubao.com.", "qclass": 1, "qtype": 1, "upstream": "tcp://1.1.1.1", "error": "EOF"}
+2024-03-18T13:39:44.586Z	WARN	forward_local	upstream error	{"uqid": 19958, "qname": "safebrowsing.googleapis.com.", "qclass": 1, "qtype": 1, "upstream": "udp://223.5.5.5", "error": "context deadline exceeded"}
+2024-03-18T13:41:12.188Z	WARN	forward_local	upstream error	{"uqid": 21191, "qname": "tmfmazu4.m.qq.com.", "qclass": 1, "qtype": 1, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:43:18.266Z	WARN	forward_local	upstream error	{"uqid": 22229, "qname": "s1b.time.edu.cn.", "qclass": 1, "qtype": 1, "upstream": "udp://119.29.29.29", "error": "context deadline exceeded"}
+2024-03-18T13:49:50.830Z	WARN	signal received	{"signal": "terminated"}
+2024-03-18T13:49:50.831Z	INFO	starting shutdown sequences
+2024-03-18T13:49:50.833Z	INFO	closing plugin	{"tag": "forward_remote"}
+2024-03-18T13:49:50.834Z	WARN	forward_remote	upstream error	{"uqid": 26160, "qname": "aefd.nelreports.net.", "qclass": 1, "qtype": 28, "upstream": "tcp://8.8.8.8", "error": "transport has been closed"}
+2024-03-18T13:49:50.834Z	WARN	forward_remote	upstream error	{"uqid": 26160, "qname": "aefd.nelreports.net.", "qclass": 1, "qtype": 1, "upstream": "tcp://8.8.8.8", "error": "transport has been closed"}
+2024-03-18T13:49:50.835Z	WARN	forward_remote	upstream error	{"uqid": 26160, "qname": "aefd.nelreports.net.", "qclass": 1, "qtype": 28, "upstream": "tcp://1.1.1.1", "error": "transport has been closed"}
+2024-03-18T13:49:50.835Z	INFO	closing plugin	{"tag": "udp_server"}
+2024-03-18T13:49:50.835Z	WARN	fallback	secondary error	{"query": {"uqid": 26160, "client": "::ffff:10.10.10.1", "qname": "aefd.nelreports.net.", "qtype": 28, "qclass": 1, "elapsed": "203.86732ms"}, "error": "all upstream servers failed"}
+2024-03-18T13:49:50.835Z	WARN	udp_server	read err	{"error": "read udp [::]:53: use of closed network connection"}
+2024-03-18T13:49:50.835Z	INFO	closing plugin	{"tag": "remote_sequence"}
+2024-03-18T13:49:50.835Z	INFO	closing plugin	{"tag": "gfw-list"}
+2024-03-18T13:49:50.836Z	INFO	closing plugin	{"tag": "tcp_server"}
+2024-03-18T13:49:50.836Z	INFO	closing plugin	{"tag": "cache"}
+2024-03-18T13:49:50.836Z	INFO	closing plugin	{"tag": "forward_local"}
+2024-03-18T13:49:50.836Z	INFO	closing plugin	{"tag": "local_sequence"}
+2024-03-18T13:49:50.836Z	WARN	forward_local	upstream error	{"uqid": 26160, "qname": "aefd.nelreports.net.", "qclass": 1, "qtype": 28, "upstream": "udp://119.29.29.29", "error": "transport has been closed"}
+2024-03-18T13:49:50.836Z	INFO	closing plugin	{"tag": "main_sequence"}
+2024-03-18T13:49:50.836Z	INFO	all plugins were closed

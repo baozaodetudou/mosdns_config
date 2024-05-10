@@ -34,9 +34,9 @@ plugins:
       concurrent: 2
       upstreams:
         - addr: tcp://8.8.8.8
-          socks5: "192.168.20.99:6153"
+          socks5: "192.168.20.6:6153"
         - addr: tcp://1.1.1.1
-          socks5: "192.168.20.99:6153"
+          socks5: "192.168.20.6:6153"
 
   # 自定义hosts
   - tag: hosts
@@ -140,3 +140,4 @@ plugins:
       listen: :53
 api:
   http: "0.0.0.0:8080"
+

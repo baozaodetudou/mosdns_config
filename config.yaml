@@ -3,6 +3,7 @@ log:
   file: "./mosdns.log"
   production: false
 
+
 plugins:
   # 缓存
   - tag: cache
@@ -20,7 +21,7 @@ plugins:
         
   # 转发至国内DNS，并发查询
   - tag: forward_local
-    type: forward
+    type: fast_forward
     args:
       concurrent: 2
       upstreams:
@@ -45,51 +46,40 @@ plugins:
       files:
         - "./hosts.txt"
 
-  # china ip和自己的vps ip
-  - tag: local_ip
-    type: ip_set
+
+  # 匹配本地域名的插件
+  - tag: query_is_local_domain
+    type: query_matcher
     args:
       files:
         - ./china_ip_list.txt
         - ./myvpsip.txt
 
-  # fallback的primary服务器,返回非国内ip则drop_resp
-  - tag: local_sequence
-    type: sequence
-    args:
-      - exec: $forward_local
-      - matches: "!resp_ip $local_ip"
-        exec: accept
-      - exec: drop_resp
 
-  # fallback的secondary服务器,返回非国内ip则添加至ipset,返回国内ip只接受不会添加ipset
-  - tag: remote_sequence
-    type: sequence
+  # 匹配非本地域名的插件
+  - tag: query_is_non_local_domain
+    type: query_matcher
     args:
-      - exec: $forward_remote
-      - matches: "!resp_ip $local_ip"
-        exec: ipset gfwlist,inet,24
-      - exec: accept
+      domain:
+        - 'provider:geosite:geolocation-!cn'
 
-  # fallback sequence
-  - tag: fallback
-    type: fallback
+  # 匹配广告域名的插件
+  - tag: query_is_ad_domain
+    type: query_matcher
     args:
-      primary: local_sequence
-      secondary: remote_sequence
-      threshold: 500
-      always_standby: true
+      domain:
+        - 'provider:geosite:category-ads-all'
 
-  # gfwlist解析出的ip添加至ipset，添加前先判断是否为国内ip或内网ip
-  - tag: gfw-list
-    type: sequence
+  # 匹配本地 IP 的插件
+  - tag: response_has_local_ip
+    type: response_matcher
     args:
-      - exec: ttl 300-3600
-      - matches: "!resp_ip $local_ip"
-        exec: ipset gfwlist,inet,24
-      - exec: accept
+      ip:
+        - 'provider:geoip:cn'
 
-  # 主运行序列
+  # 主要的运行逻辑插件
+  # sequence 插件中调用的插件 tag 必须在 sequence 前定义，
+  # 否则 sequence 找不到对应插件。
   - tag: main_sequence
     type: sequence
     args:
